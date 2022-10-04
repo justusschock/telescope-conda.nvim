@@ -29,17 +29,21 @@ M.setup = function(setup_config)
 	        i = i + 1
 	end
 	
+	local tried_directories = ''
+	
 	while not conda_path and viableInstallationDirs[k] do
 		local currentPath = viableInstallationDirs[k]
 		if vim.fn.isdirectory(currentPath) ~= 0 then
 			conda_path = currentPath
+		else:
+			tried_directories = tried_directories .. ', ' .. currentPath
 		end
 		i = i + 1
 	end
 
 	if not conda_path then
 		error(
-			"Anaconda installation path not found! Please make sure Anaconda is installed or configure the correct path"
+			"Anaconda installation path not found! Please make sure Anaconda is installed or configure the correct path, tried directories:" .. tried_directories
 		)
 	else
 		conda_path = vim.fn.expand(conda_path) -- To enable vars in configuration path
@@ -48,7 +52,7 @@ end
 
 M.conda = function(opts)
 	opts = opts or {}
-	local conda_env_path = conda_path .. "/envs"
+	local conda_env_path = conda_path .. "/envs
 	local conda_finder = function()
 		local conda_envs = {}
 		scan.scan_dir(conda_env_path, {
