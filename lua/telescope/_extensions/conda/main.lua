@@ -11,13 +11,24 @@ local conda_path
 
 M.setup = function(setup_config)
 	local home = os.getenv("HOME")
-	local viableInstallationDirs = { "/miniconda3", "/anaconda3" }
-
+	local possible_root_dirs = { home, '/usr/local/Caskroom', '/opt/homebrew/Caskroom' } -- home dir and homebrew casks dirs for intel and apple silicon
+	local possible_names = { 'miniconda', 'miniconda3' , 'anaconda', 'anaconda3' }
+	
 	conda_path = setup_config.anaconda_path or nil -- TODO throw error on wrong path
 
 	local i = 1
-	while not conda_path and viableInstallationDirs[i] do
-		local currentPath = home .. viableInstallationDirs[i]
+	local j = 1
+	
+	local viableInstallationDirs = {}
+	
+	while possible_root_dirs[i] do
+		while possible_names[j] do
+			table.insert(viableInstallatioDirs, possible_root_dirs .. possible_names)
+		end
+	end
+	
+	while not conda_path and viableInstallationDirs[k] do
+		local currentPath = viableInstallationDirs[k]
 		if vim.fn.isdirectory(currentPath) ~= 0 then
 			conda_path = currentPath
 		end
