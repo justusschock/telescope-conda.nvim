@@ -38,7 +38,7 @@ M.setup = function(setup_config)
 		else
 			tried_directories = tried_directories .. ', ' .. currentPath
 		end
-		i = i + 1
+		k = k + 1
 	end
 
 	if not conda_path then
