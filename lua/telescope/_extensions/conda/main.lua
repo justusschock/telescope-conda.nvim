@@ -35,7 +35,7 @@ M.setup = function(setup_config)
 		local currentPath = viableInstallationDirs[k]
 		if vim.fn.isdirectory(currentPath) ~= 0 then
 			conda_path = currentPath
-		else:
+		else
 			tried_directories = tried_directories .. ', ' .. currentPath
 		end
 		i = i + 1
