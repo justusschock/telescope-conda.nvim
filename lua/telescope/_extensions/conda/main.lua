@@ -52,9 +52,9 @@ end
 
 M.conda = function(opts)
 	opts = opts or {}
-	local conda_env_path = conda_path .. "/envs
+	local conda_env_path = conda_path .. "/envs"
 	if vim.fn.isdirectory(conda_env_path) == 0 then
-	    conda_env_path = conda_path .. '/base/envs'
+	    conda_env_path = conda_path .. "/base/envs"
 	fi
 	
 	local conda_finder = function()
