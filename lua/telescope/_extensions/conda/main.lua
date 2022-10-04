@@ -23,7 +23,7 @@ M.setup = function(setup_config)
 	
 	while possible_root_dirs[i] do
 		while possible_names[j] do
-			table.insert(viableInstallatioDirs, possible_root_dirs .. possible_names)
+			table.insert(viableInstallatioDirs, possible_root_dirs[i] .. possible_names[j])
 		end
 	end
 	
