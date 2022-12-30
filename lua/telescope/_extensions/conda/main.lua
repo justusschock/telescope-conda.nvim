@@ -30,6 +30,7 @@ M.setup = function(setup_config)
 	end
 	
 	local tried_directories = ''
+	local k = 1
 	
 	while not conda_path and viableInstallationDirs[k] do
 		local currentPath = viableInstallationDirs[k]
