@@ -130,6 +130,7 @@ M.conda = function(opts)
 				-- remove it and append it separately. Otherwise might have issues when no env in path in the beginning
 				vim.env.PATH = string.gsub(vim.env.PATH, current_conda .. '', '')
 				vim.env.PATH = next_conda .. ':' .. vim.env.PATH
+				vim.g.python3_host_prog = vim.env.CONDA_PYTHON_EXE
 			end)
 			return true
 		end,
